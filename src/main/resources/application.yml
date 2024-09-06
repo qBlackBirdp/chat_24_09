@@ -1,2 +1,5 @@
 server:
   port: 8888
+logging:
+  level:
+    com.example.exam.chat_24_09: debug
