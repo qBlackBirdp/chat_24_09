@@ -23,7 +23,7 @@ public class ChatMessage {
         private static long id = 0;
 
         public static long getNateId() {
-            return id++;
+            return ++id;
         }
     }
 }
