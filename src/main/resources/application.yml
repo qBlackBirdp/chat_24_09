@@ -1,5 +1,14 @@
 server:
   port: 8888
+spring:
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
 logging:
   level:
     com.example.exam.chat_24_09: debug

@@ -1,9 +1,8 @@
 package com.example.exam.chat_24_09;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -29,6 +28,11 @@ public class ChatController {
     public record writeMessageResponse (long id) {}
     public record messagesRequest (Long fromId) {}
     public record messagesResponse (List<ChatMessage> chatMessages, long count) {}
+
+    @GetMapping("/room")
+    public String showRoom() {
+        return "chat/room";
+    }
 
     @PostMapping("/writeMessage")
     @ResponseBody
