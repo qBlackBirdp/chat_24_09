@@ -19,7 +19,7 @@ public class ChatMessage {
     public ChatMessage(String authorName, String content) {
         this(ChatMessageIdGenerator.getNateId(), LocalDateTime.now(), authorName, content);
     }
-    class ChatMessageIdGenerator {
+    static class ChatMessageIdGenerator {
         private static long id = 0;
 
         public static long getNateId() {
