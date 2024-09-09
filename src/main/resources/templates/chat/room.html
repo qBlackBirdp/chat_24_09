@@ -118,11 +118,16 @@
                     `<li>${message.authorName} : ${message.content}</li>`
                 );
         });
-        // Chat__loadMore(); 즉시실행
-        setTimeout(Chat__loadMore, 500); // 0.5초 뒤에 실행
+        // // Chat__loadMore(); 즉시실행
+        // setTimeout(Chat__loadMore, 500); // 0.5초 뒤에 실행
     }
+
+    const sse = new EventSource("/sse/connect");
+
+    sse.addEventListener('chat__messageAdded', e => {
+        Chat__loadMore();
+    });
 
     // 최초에 한번 불러오기
     Chat__loadMore();
-
 </script>
