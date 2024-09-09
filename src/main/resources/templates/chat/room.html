@@ -102,7 +102,10 @@
     const Chat_elMessageUl = document.querySelector('.chat__message-ul');
 
     function Chat__drawMessages(messages) {
-        if (messages.length === 0) return;
+        if (messages.length > 0) {
+            // 메세지를 그리기 전에 Chat__lastLoadedUuid 변수를 갱신합니다.
+            Chat__lastLoadedId = messages[messages.length - 1].id;
+        }
 
         // 메세지를 그리기 전에 Chat__lastLoadedUuid 변수를 갱신합니다.
         Chat__lastLoadedId = messages[messages.length - 1].id;
@@ -115,5 +118,11 @@
                     `<li>${message.authorName} : ${message.content}</li>`
                 );
         });
+        // Chat__loadMore(); 즉시실행
+        setTimeout(Chat__loadMore, 500); // 0.5초 뒤에 실행
     }
+
+    // 최초에 한번 불러오기
+    Chat__loadMore();
+
 </script>
