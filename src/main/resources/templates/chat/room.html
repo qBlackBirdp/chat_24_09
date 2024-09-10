@@ -106,11 +106,7 @@
             // 메세지를 그리기 전에 Chat__lastLoadedUuid 변수를 갱신합니다.
             Chat__lastLoadedId = messages[messages.length - 1].id;
         }
-
-        // 메세지를 그리기 전에 Chat__lastLoadedUuid 변수를 갱신합니다.
-        Chat__lastLoadedId = messages[messages.length - 1].id;
         console.log(Chat__lastLoadedId);
-
         messages.forEach((message) => {
             Chat_elMessageUl
                 .insertAdjacentHTML(
@@ -118,12 +114,16 @@
                     `<li>${message.authorName} : ${message.content}</li>`
                 );
         });
-        // // Chat__loadMore(); 즉시실행
-        // setTimeout(Chat__loadMore, 500); // 0.5초 뒤에 실행
+        // Chat__loadMore(); 즉시실행
+        // setTimeout(Chat__loadMore, 500); // 0.5초 뒤에 실행 -> 무분별한 호출 야기
     }
 
+    // SSE 연결(통신)
+    // SSE == 단방향 무전기
+    // 방향 : 서버 -> 클라이언트
     const sse = new EventSource("/sse/connect");
 
+    // 서버로부터 chat__messageAdded 라는 알림이 오면? -> Chat__loadMore 함수를 실행해
     sse.addEventListener('chat__messageAdded', e => {
         Chat__loadMore();
     });
